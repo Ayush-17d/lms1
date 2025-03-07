@@ -12,7 +12,7 @@
 
 // const CourseAccessContent: FC<Props> = ({ id }) => {
 //   const { data: contentData, isLoading, error } = useGetCourseContentQuery(id);
-//   const data = contentData?.content ; 
+//   const data = contentData?.content ;
 //   const [activeVideo, setActiveVideo] = useState(0);
 //   const [activeItem, setActiveItem] = useState(5);
 //   const [open, setOpen] = useState(false);
@@ -40,7 +40,7 @@
 //             description="anything"
 //             keywords={data[activeVideo]?.tags || ""}
 //           />
-          
+
 //           <div className="col-span-7">
 //             <CourseContentMedia
 //               data={data}
@@ -114,11 +114,11 @@ import CourseContentList from "./CourseContentList";
 
 type Props = {
   id: string;
-  //user: any;
+  user: any;
 };
 
 const CourseAccessContent: FC<Props> = ({ id, user }) => {
-  const { data: contentData, isLoading, error } = useGetCourseContentQuery(id);
+  const { data: contentData, isLoading, error,refetch } = useGetCourseContentQuery(id,{refetchOnMountOrArgChange:true});
   const data = contentData?.content;
   const [activeVideo, setActiveVideo] = useState(0);
   const [activeItem, setActiveItem] = useState(5);
@@ -127,8 +127,13 @@ const CourseAccessContent: FC<Props> = ({ id, user }) => {
 
   if (isLoading) return <Loader />;
   if (error) {
-    const errorMessage = (error as any)?.data?.error || "Failed to load course content";
-    return <div className="text-center py-10 text-red-500">Error: {errorMessage}</div>;
+    const errorMessage =
+      (error as any)?.data?.error || "Failed to load course content";
+    return (
+      <div className="text-center py-10 text-red-500">
+        Error: {errorMessage}
+      </div>
+    );
   }
 
   return (
@@ -142,7 +147,10 @@ const CourseAccessContent: FC<Props> = ({ id, user }) => {
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <Heading
-          title={data?.[activeVideo]?.title + " - LearnifyHub" || "No Title Available"}
+          title={
+            data?.[activeVideo]?.title + " - LearnifyHub" ||
+            "No Title Available"
+          }
           description="Course content"
           keywords={data?.[activeVideo]?.tags || ""}
         />
@@ -153,7 +161,8 @@ const CourseAccessContent: FC<Props> = ({ id, user }) => {
               id={id}
               activeVideo={activeVideo}
               setActiveVideo={setActiveVideo}
-              //user={user}
+              user={user}
+              refetch={refetch}
             />
           </div>
 

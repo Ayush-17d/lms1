@@ -20,7 +20,7 @@ const ScrollingText: FC<{
         x: {
           repeat: Infinity,
           repeatType: "loop",
-          duration: 40,
+          duration: 80,
           ease: "linear",
         },
       },
@@ -51,9 +51,9 @@ const Hero: FC<Props> = () => {
     <div className="w-full h-screen flex flex-col lg:flex-row items-center justify-between bg-[#DDE6ED] dark:bg-[#27374D] relative overflow-hidden">
       {/* Scrolling Text Layers */}
       <ScrollingText text="grow daily" direction="left" top={0} />
-      <ScrollingText text="Stay Focused" direction="right" top={170} />
-      <ScrollingText text="Master Skills" direction="left" top={355} />
-      <ScrollingText text="Unlock Potential" direction="right" top={530} />
+      <ScrollingText text="Stay Focused" direction="right" top={150} />
+      <ScrollingText text="Master Skills" direction="left" top={300} />
+      <ScrollingText text="Unlock Potential" direction="right" top={450 } />
 
       {/* Left Side - Image */}
       <div className="image-container z-10">
