@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import CourseCard from "../Course/CourseCard";
-import { useGetAllCoursesQuery } from "@/redux/features/courses/coursesApi";
+import { useGetUsersCoursesQuery } from "@/redux/features/courses/coursesApi";
 import Link from "next/link";
 
 const Courses = () => {
-  const { data, isLoading } = useGetAllCoursesQuery({});
+  const { data, isLoading } = useGetUsersCoursesQuery({});
   const [courses, setCourses] = useState<any[]>([]);
 
   useEffect(() => {
